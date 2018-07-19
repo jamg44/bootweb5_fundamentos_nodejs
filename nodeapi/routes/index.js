@@ -14,4 +14,21 @@ router.get('/otrapagina', function(req, res, next) {
   next(new Error('no permitido'));
 });
 
+router.get('/paramenruta/:dato', (req, res, next) => {
+  const dato = req.params.dato;
+  res.send('ok, recibido dato:' + dato);
+});
+
+router.get('/paramenrutaopt/:dato?', (req, res, next) => {
+  const dato = req.params.dato;
+  res.send('ok, recibido dato opcional: ' + dato);
+});
+
+router.get('/params/:id([0-9]+)/piso/:piso/puerta/:puerta', (req, res, next) => {
+  const id = req.params.id;
+  console.log(req.params);
+  res.send('ok, recibido id: ' + id);
+});
+
+
 module.exports = router;
