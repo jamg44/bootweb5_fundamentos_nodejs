@@ -1,10 +1,32 @@
 var express = require('express');
 var router = express.Router();
 
+const { query, validationResult } = require('express-validator/check');
+/* Es lo mismo que:
+const validator = require('express-validator/check');
+const query = validator.query;
+const validationResult = validator.validationResult;*/
+
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
+
+  const segundo = (new Date()).getSeconds();
+
+  res.locals.valor = '<script>alert("ha, ha, ha")</script>';
+
   // la vista se renderiza (calcula) EN EL SERVIDOR
-  res.render('index', { title: 'Express' });
+  res.render('index', {
+    condicion: {
+      segundo: segundo,
+      par: segundo % 2 === 0
+    },
+    users: [
+      { name: 'Smith', age: 20 },
+      { name: 'Thomas', age: 37 },
+      { name: 'Jones', age: 18 },
+    ]
+  });
 });
 
 router.get('/otrapagina', function(req, res, next) {
@@ -30,5 +52,21 @@ router.get('/params/:id([0-9]+)/piso/:piso/puerta/:puerta', (req, res, next) => 
   res.send('ok, recibido id: ' + id);
 });
 
+router.get('/enquerystring', [ // validations
+  query('talla').isNumeric().withMessage('debe ser numérico'),
+  //query('color').isNumeric().withMessage('debe ser numérico')
+], (req, res, next) => {
+  // http://localhost:3000/enquerystring/?color=rojo&talla=M
+  console.log(req.query);
+  validationResult(req).throw(); // pasa los errores de validación a next(err)
+
+  // si la ejecución llega aquí, es que todos los parámetros son validos
+  res.send('ok');
+});
+
+router.post('/enelbody', (req, res, next) => {
+  console.log('req.body', req.body);
+  res.send('ok');
+});
 
 module.exports = router;
