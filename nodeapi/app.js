@@ -23,6 +23,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.locals.titulo = 'NodeAPI';
 
 /**
+ * Conectamos a la base de datos
+ * y registramos los modelos
+ */
+require('./lib/connectMongoose');
+require('./models/Agente');
+
+/**
+ * Rutas de mi API
+ */
+app.use('/apiv1/agentes', require('./routes/apiv1/agentes'));
+
+/**
  * Rutas de mi aplicación web
  */
 app.use('/',        require('./routes/index'));
