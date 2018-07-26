@@ -12,7 +12,27 @@ const Agente = require('../../models/Agente');
  */
 router.get('/', async (req, res, next) => {
   try {
-    const agentes = await Agente.find().exec(); 
+
+    // recuperar datos de entrada
+    const name = req.query.name;
+    const age = req.query.age;
+    const limit = parseInt(req.query.limit);
+    const skip = parseInt(req.query.skip);
+    const fields = req.query.fields;
+    const sort = req.query.sort;
+
+    // crear el filtro vacio
+    const filtro = {};
+
+    if (name) {
+      filtro.name = name;
+    }
+
+    if (age) {
+      filtro.age = age;
+    }
+
+    const agentes = await Agente.listar(filtro, limit, skip, fields, sort);
     // si await falla, lanza una excepción --> throw new Exception()
     res.json({ success: true, result: agentes });
   } catch (err) {

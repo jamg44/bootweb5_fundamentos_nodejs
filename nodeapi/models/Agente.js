@@ -8,6 +8,16 @@ const agenteSchema = mongoose.Schema({
   age: Number
 });
 
+// creamos un método estático
+agenteSchema.statics.listar = function(filtro, limit, skip, fields, sort) {
+  const query = Agente.find(filtro);
+  query.limit(limit);
+  query.skip(skip);
+  query.select(fields);
+  query.sort(sort);
+  return query.exec();
+}
+
 // crear el modelo con ese esquema
 const Agente = mongoose.model('Agente', agenteSchema);
 
