@@ -6,7 +6,8 @@
     "start": "node ./bin/www",
     "dev": "cross-env DEBUG=nodeapi:* nodemon",
     "prelista": "echo listando ficheros",
-    "lista": "ls -l"
+    "lista": "ls -l",
+    "install_db": "node install_db.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
