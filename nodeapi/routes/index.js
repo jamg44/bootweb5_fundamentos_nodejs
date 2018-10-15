@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-const i18n = require('../lib/i18nConfigure')();
-
 const { query, validationResult } = require('express-validator/check');
 /* Es lo mismo que:
 const validator = require('express-validator/check');
@@ -18,9 +16,7 @@ router.get('/', function(req, res, next) {
 
   const segundo = (new Date()).getSeconds();
 
-  console.log(i18n.getLocale());  
-
-  res.locals.valor = `<script>alert("${i18n.__("hi, you are hacked")}")</script>`;
+  res.locals.valor = `<script>alert("${res.__("hi, you are hacked")}")</script>`;
 
   // la vista se renderiza (calcula) EN EL SERVIDOR
   res.render('index', {
