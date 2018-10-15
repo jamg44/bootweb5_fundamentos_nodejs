@@ -1,0 +1,9 @@
+{
+	"Application title": "Titulo de la aplicación",
+	"Name and age": "Hola, mi nombre es {{name}} y tengo {{age}} años.",
+	"Mouse": {
+		"one": "%s ratón",
+		"other": "%s ratones"
+	},
+	"Welcome to": "Bienvenido a"
+}

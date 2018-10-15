@@ -1,0 +1,9 @@
+{
+	"Application title": "Application title",
+	"Name and age": "Hello, my name is {{name}} and I'm {{age}} years old",
+	"Mouse": {
+		"one": "%s mouse",
+		"other": "%s mice"
+	},
+	"Welcome to": "Welcome to"
+}
