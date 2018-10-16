@@ -49,9 +49,15 @@ app.use('/apiv1/agentes', require('./routes/apiv1/agentes'));
 /**
  * Rutas de mi aplicación web
  */
+
+const loginController = require('./routes/loginController');
+
 app.use('/',        require('./routes/index'));
 app.use('/about',   require('./routes/about'));
 app.use('/lang',    require('./routes/lang'));
+// usamos el estilo de Controladores para estructurar las rutas
+app.get('/login', loginController.index);
+app.post('/login', loginController.post);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

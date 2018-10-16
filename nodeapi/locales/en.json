@@ -7,5 +7,8 @@
 	},
 	"Welcome to": "Welcome to",
 	"hi, you are hacked": "hi, you are hacked",
-	"This is an amazing app!": "This is an amazing app!"
+	"This is an amazing app!": "This is an amazing app!",
+	"Login": "Login",
+	"Please login to access": "Please login to access",
+	"Invalid credentials": "Invalid credentials"
 }

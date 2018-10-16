@@ -11,6 +11,7 @@
     "install_db": "node install_db.js"
   },
   "dependencies": {
+    "bcrypt": "^3.0.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "dotenv": "^6.0.0",
