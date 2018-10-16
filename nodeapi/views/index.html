@@ -1,27 +1,35 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= titulo %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= titulo %></h1>
-    <p><%= __('Welcome to') %> <%= titulo %></p>
 
-    <h3>Valor</h3>
-    <p><%= valor %></p>
+<% include header.html %>
 
-    <h3>Incluyendo una condición</h3>
-    <% if (condicion.par) { %>
-      <p><%= condicion.segundo %> es par</p>
-    <% } else { %>
-      <p><%= condicion.segundo %> es impar</p>
-    <% } %>
 
-    <h3>Incluyendo un bucle</h3>
-    <% users.forEach(function(user) { %>
-      <p><%= user.name + ' ' + user.age %>
-    <% }) %>
+<header class="masthead">
+    <div class="container h-100">
+      <div class="row h-100">
+        <div class="col-lg-7 my-auto">
+          <div class="header-content mx-auto">
 
-  </body>
-</html>
+              <h1><%= titulo %></h1>
+              <p><%= __('Welcome to') %> <%= titulo %></p>
+          
+              <h3>Valor</h3>
+              <p><%= valor %></p>
+          
+              <h3>Incluyendo una condición</h3>
+              <% if (condicion.par) { %>
+                <p><%= condicion.segundo %> es par</p>
+              <% } else { %>
+                <p><%= condicion.segundo %> es impar</p>
+              <% } %>
+          
+              <h3>Incluyendo un bucle</h3>
+              <% users.forEach(function(user) { %>
+                <p><%= user.name + ' ' + user.age %>
+              <% }) %>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+<% include footer.html %>
