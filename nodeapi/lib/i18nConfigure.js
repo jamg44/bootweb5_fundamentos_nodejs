@@ -11,6 +11,7 @@ module.exports = function() {
     defaultLocale: 'en',
     autoReload: true,
     syncFiles: true,
+    cookie: 'nodeapi-lang' // usar locale de esta cookie
   });
 
   i18n.setLocale('en'); // locale por defecto para scripts
