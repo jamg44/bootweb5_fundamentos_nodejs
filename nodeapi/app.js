@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 const { isAPI } = require('./lib/utils');
 
@@ -55,7 +56,11 @@ app.use(session({
   secret: 'hsd fkljadskjfhadssldjkh adksfhsd897sd8yf87w3yrih7wdehiuwehrfiu',
   resave: false,
   saveUninitialized: false,
-  cookie: { maxAge: 2 * 24 * 60 * 60 * 1000 } // a los dos días de inactividad caduca
+  cookie: { maxAge: 2 * 24 * 60 * 60 * 1000, httpOnly: true }, // a los dos días de inactividad caduca
+  store: new MongoStore({
+    // como conectarse a la base de datos
+    url: process.env.MONGOOSE_CONNECTION_STRING
+  })
 }));
 
 // auth helper middleware - dar acceso a sesión desde las vistas
