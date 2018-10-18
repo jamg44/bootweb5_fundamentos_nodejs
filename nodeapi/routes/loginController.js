@@ -10,7 +10,6 @@ class LoginController {
 
   // GET "/"
   index(req, res, next) {
-    console.log(process.env.NODE_ENV)
     res.locals.email = process.env.NODE_ENV === 'development' ? 'admin@example.com' : '';
     res.locals.error = '';
     res.render('login');
@@ -30,6 +29,7 @@ class LoginController {
         res.locals.email = email;
         res.locals.error = res.__('Invalid credentials');
         res.render('login');
+        return;
       }
 
       // usuario encontrado y password ok
