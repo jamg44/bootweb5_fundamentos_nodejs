@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "cross-env DEBUG=nodeapi:* nodemon",
+    "dev": "cross-env DEBUG=nodeapi:* NODE_ENV=development nodemon",
     "cluster": "node ./bin/cluster",
     "prelista": "echo listando ficheros",
     "lista": "ls -l",
