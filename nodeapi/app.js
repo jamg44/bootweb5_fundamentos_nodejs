@@ -55,6 +55,7 @@ const loginController = require('./routes/loginController');
 app.use('/',        require('./routes/index'));
 app.use('/about',   require('./routes/about'));
 app.use('/lang',    require('./routes/lang'));
+app.use('/privado', require('./routes/privado'));
 // usamos el estilo de Controladores para estructurar las rutas
 app.get('/login', loginController.index);
 app.post('/login', loginController.post);
