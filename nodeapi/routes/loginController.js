@@ -32,6 +32,9 @@ class LoginController {
         return;
       }
 
+      // guardar la identidad del usuario en una sesión
+      req.session.authUser = { _id: usuario._id };
+
       // usuario encontrado y password ok
       // ...
       res.redirect('/privado');
@@ -40,6 +43,18 @@ class LoginController {
       next(err);
     }
   }
+
+  // GET /logout
+  logout(req, res, next) {
+    delete req.session.authUser; // borrar authUser de la sesión
+    req.session.regenerate(function(err) {
+      if (err) {
+        next(err);
+        return;
+      }
+      res.redirect('/');
+    })
+  }  
 
 }
 

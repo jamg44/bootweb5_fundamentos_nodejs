@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const session = require('express-session');
 
 const { isAPI } = require('./lib/utils');
 
@@ -47,6 +48,18 @@ require('./models/Agente');
 app.use('/apiv1/agentes', require('./routes/apiv1/agentes'));
 
 /**
+ * Inicializamos/cargamos la sesión del usuario que hace la petición
+ */
+app.use(session({
+  name: 'nodeapi-session',
+  secret: 'hsd fkljadskjfhadssldjkh adksfhsd897sd8yf87w3yrih7wdehiuwehrfiu',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 2 * 24 * 60 * 60 * 1000 } // a los dos días de inactividad caduca
+}));
+
+
+/**
  * Rutas de mi aplicación web
  */
 
@@ -59,6 +72,7 @@ app.use('/privado', require('./routes/privado'));
 // usamos el estilo de Controladores para estructurar las rutas
 app.get('/login', loginController.index);
 app.post('/login', loginController.post);
+app.get('/logout', loginController.logout);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
