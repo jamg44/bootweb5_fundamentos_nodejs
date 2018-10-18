@@ -5,6 +5,7 @@
 const bcrypt = require('bcrypt');
 
 const Usuario = require('../models/Usuario');
+const namedRoutes = require('../lib/namedRoutes');
 
 class LoginController {
 
@@ -37,7 +38,7 @@ class LoginController {
 
       // usuario encontrado y password ok
       // ...
-      res.redirect('/privado');
+      res.redirect(namedRoutes.privado);
 
     } catch(err) {
       next(err);
@@ -52,7 +53,7 @@ class LoginController {
         next(err);
         return;
       }
-      res.redirect('/');
+      res.redirect(namedRoutes.home);
     })
   }  
 
