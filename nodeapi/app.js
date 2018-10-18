@@ -26,11 +26,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 const i18n = require('./lib/i18nConfigure')();
 app.use(i18n.init);
 
-console.log(i18n.__('Application title'));
-console.log(i18n.__('Name and age', {name: 'Javier', age: 46}));
-console.log(i18n.__({ phrase: 'Application title', locale: 'es'})); // forzar un idioma concreto para un literal
-console.log(i18n.__n('Mouse', 1));
-console.log(i18n.__n('Mouse', 2));
+// console.log(i18n.__('Application title'));
+// console.log(i18n.__('Name and age', {name: 'Javier', age: 46}));
+// console.log(i18n.__({ phrase: 'Application title', locale: 'es'})); // forzar un idioma concreto para un literal
+// console.log(i18n.__n('Mouse', 1));
+// console.log(i18n.__n('Mouse', 2));
 
 // Variables globales de template
 app.locals.titulo = 'NodeAPI';
@@ -58,6 +58,11 @@ app.use(session({
   cookie: { maxAge: 2 * 24 * 60 * 60 * 1000 } // a los dos días de inactividad caduca
 }));
 
+// auth helper middleware - dar acceso a sesión desde las vistas
+app.use((req, res, next) => {
+  res.locals.session = req.session;
+  next();
+});
 
 /**
  * Rutas de mi aplicación web
