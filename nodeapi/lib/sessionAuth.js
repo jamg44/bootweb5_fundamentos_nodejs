@@ -7,6 +7,7 @@
  */
 
 const namedRoutes = require('./namedRoutes');
+const Usuario = require('../models/Usuario');
 
 module.exports = function() {
   return function(req, res, next) {
@@ -14,6 +15,13 @@ module.exports = function() {
       res.redirect(namedRoutes.login);
       return;
     }
-    next();
+
+    // recuperamos el usuario
+    Usuario.findById(req.session.authUser._id).then( usuario => {
+      req.user = usuario;
+      next();
+    });
+
+    
   }
 }

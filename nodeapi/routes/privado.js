@@ -22,11 +22,8 @@ router.post('/sendEmail', async (req, res, next) => {
 
     const texto = req.body.texto;
 
-    // recuperamos el usuario
-    const usuario = await Usuario.findById(req.session.authUser._id);
-
     // le enviamos un email
-    usuario.sendEmail('NodeAPI <admin@nodeapi.com>', 'Prueba de email', texto);
+    req.user.sendEmail('NodeAPI <admin@nodeapi.com>', 'Prueba de email', texto);
 
     // respondemos
     res.json({ success: true, result: 'sent' });
