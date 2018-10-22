@@ -2,6 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
+const { body, validationResult } = require('express-validator/check');
 
 const sessionAuth = require('../lib/sessionAuth');
 const Usuario = require('../models/Usuario');
@@ -17,8 +18,12 @@ router.get('/', (req, res, next) => {
  * POST /sendEmail
  * Envia un email al usuario logado en el site
  */
-router.post('/sendEmail', async (req, res, next) => {
+router.post('/sendEmail', [
+  body('texto').isString().withMessage('debe ser un texto') // validación
+], async (req, res, next) => {
   try {
+
+    validationResult(req).throw(); // pasa los errores de validación a next(err)
 
     const texto = req.body.texto;
 
