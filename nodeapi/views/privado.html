@@ -17,6 +17,7 @@
         <button type="button" 
                 class="btn btn-outline-success"
                 v-on:click="sendMessageToUser">Mandame un email con AJAX (SPA)</button>
+        <p class="message">{{message}}</p>
       </form>
 
     </div>
@@ -30,16 +31,20 @@
 var paginaPrivado = new Vue({
   el: '.paginaPrivado',
   data: {
-    texto: ''
+    texto: '',
+    message: 'Preparado para mandar...'
   },
   methods: {
     sendMessageToUser: async function() {
       try {
+        this.message = 'Enviando...';
         const data = await postData('privado/sendEmail', {
           texto: this.texto
         });
+        this.message = `Mensaje ${this.texto} enviado!!!`;
       } catch(err) {
         console.log(err);
+        this.message = error.message;
       }
     }
   }
