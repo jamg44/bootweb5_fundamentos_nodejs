@@ -1,6 +1,6 @@
 <% include header.html %>
 
-<section class="cta">
+<section class="cta paginaPrivado">
   <div class="cta-content">
     <div class="container">
       <h2>Mi espacio privado.</h2>
@@ -11,11 +11,59 @@
         <button type="submit">Mandame un email con formulario (MPA)</button>
       </form>
 
-
+      <!-- Llamada con AJAX (SPA) -->
+      <form>
+        <input type="text" v-model="texto">
+        <button type="button" 
+                class="btn btn-outline-success"
+                v-on:click="sendMessageToUser">Mandame un email con AJAX (SPA)</button>
+      </form>
 
     </div>
   </div>
   <div class="overlay"></div>
 </section>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+<script>
+var paginaPrivado = new Vue({
+  el: '.paginaPrivado',
+  data: {
+    texto: ''
+  },
+  methods: {
+    sendMessageToUser: async function() {
+      try {
+        const data = await postData('privado/sendEmail', {
+          texto: this.texto
+        });
+      } catch(err) {
+        console.log(err);
+      }
+    }
+  }
+});
+
+function postData(url = ``, data = {}) {
+  // Default options are marked with *
+    return fetch(url, {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, cors, *same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, same-origin, *omit
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            // "Content-Type": "application/x-www-form-urlencoded",
+        },
+        redirect: "follow", // manual, *follow, error
+        referrer: "no-referrer", // no-referrer, *client
+        body: JSON.stringify(data), // body data type must match "Content-Type" header
+    })
+    .then(response => response.json()); // parses response to JSON
+}
+
+</script>
+
 
 <% include footer.html %>
