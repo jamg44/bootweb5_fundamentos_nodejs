@@ -40,6 +40,10 @@
           $('#messages').append($('<li>').text(msg)); // añado mensaje a la lista
         });
 
+        socket.on('pasa un segundo', function() {
+          $('#messages').append($('<li>').text('el servidor dice que ha pasado un segundo')); // añado mensaje a la lista
+        })
+
       });
     </script>
   </body>

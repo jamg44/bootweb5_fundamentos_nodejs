@@ -14,6 +14,9 @@ io.on('connection', socket => {
   socket.on('chat message', msg => {
     console.log('mensaje recibido', msg);
     io.emit('chat message', msg);
+    setInterval(() => {
+      socket.emit('pasa un segundo');
+    }, 1000);
   })
 });
 
