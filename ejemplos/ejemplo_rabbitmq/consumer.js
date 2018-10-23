@@ -17,7 +17,7 @@ const queueName = 'tareas';
   // le decimos al canal 
   // cuantos mensajes quiero procesar
   // en paralelo
-  channel.prefetch(100);
+  channel.prefetch(1);
 
   channel.consume(queueName, msg => {
     console.log(msg.content.toString());
@@ -26,7 +26,7 @@ const queueName = 'tareas';
       // cuando hemos terminado de procesar el mensaje
       // confirmamos a rabbit que está procesado
       channel.ack(msg);
-    }, 1);
+    }, 10);
   })
 
 })().catch(err => console.log(err));

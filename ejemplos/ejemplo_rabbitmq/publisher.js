@@ -18,19 +18,25 @@ const queueName = 'tareas';
     durable: true // la cola sobrevive a reinicios del broker
   });
 
-  setInterval(() => {
+  let sendAgain = true;
 
+  setInterval(async () => {
     const mensaje = {
       workToDo: 'la tarea de ' + Date.now()
     };
 
+    if (!sendAgain) {
+      console.log('Esperando a evento drain...');
+      await new Promise(resolve => channel.on('drain', resolve));
+    }
+
     // mandar un mensaje
-    const result = channel.sendToQueue(queueName, Buffer.from( JSON.stringify(mensaje) ), {
+    sendAgain = channel.sendToQueue(queueName, Buffer.from( JSON.stringify(mensaje) ), {
       persistent: true // el mensaje sobrevive a reinicios
     });
 
-    console.log(`publicado ${mensaje.workToDo} ${result}`);
+    console.log(`publicado ${mensaje.workToDo} ${sendAgain}`);
 
-  }, 100);
+  }, 10);
 
 })().catch(err => console.log('Hubo un error', err));
