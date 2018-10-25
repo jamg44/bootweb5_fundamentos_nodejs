@@ -24,6 +24,7 @@
     "i18n": "^0.8.3",
     "mongoose": "^5.2.5",
     "morgan": "~1.9.0",
+    "multer": "^1.4.1",
     "nodemailer": "^4.6.8"
   },
   "devDependencies": {

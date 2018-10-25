@@ -26,6 +26,12 @@
                 <p><%= user.name + ' ' + user.age %>
               <% }) %>
           
+              <h3>Uploads</h3>
+              <form action="/upload" method="POST" enctype="multipart/form-data">
+                <input type="file" name="imagen"><br>
+                <button type="submit">Subir fichero</button>
+              </form>
+
           </div>
         </div>
       </div>
