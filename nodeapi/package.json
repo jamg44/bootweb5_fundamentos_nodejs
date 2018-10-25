@@ -8,7 +8,8 @@
     "cluster": "node ./bin/cluster",
     "prelista": "echo listando ficheros",
     "lista": "ls -l",
-    "install_db": "node install_db.js"
+    "install_db": "node install_db.js",
+    "test": "mocha **/*.e2e.js"
   },
   "dependencies": {
     "bcrypt": "^3.0.1",
@@ -23,10 +24,12 @@
     "http-errors": "~1.6.2",
     "i18n": "^0.8.3",
     "jsonwebtoken": "^8.3.0",
+    "mocha": "^5.2.0",
     "mongoose": "^5.2.5",
     "morgan": "~1.9.0",
     "multer": "^1.4.1",
-    "nodemailer": "^4.6.8"
+    "nodemailer": "^4.6.8",
+    "supertest": "^3.3.0"
   },
   "devDependencies": {
     "cross-env": "^5.2.0"
