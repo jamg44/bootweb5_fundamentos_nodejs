@@ -7,6 +7,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
 const { isAPI } = require('./lib/utils');
+const loginController = require('./routes/loginController');
 
 var app = express();
 
@@ -47,6 +48,7 @@ require('./models/Agente');
  * Rutas de mi API
  */
 app.use('/apiv1/agentes', require('./routes/apiv1/agentes'));
+app.post('/loginJWT', loginController.postJWT);
 
 /**
  * Inicializamos/cargamos la sesión del usuario que hace la petición
@@ -72,8 +74,6 @@ app.use((req, res, next) => {
 /**
  * Rutas de mi aplicación web
  */
-
-const loginController = require('./routes/loginController');
 
 app.use('/',        require('./routes/index'));
 app.use('/about',   require('./routes/about'));

@@ -5,6 +5,10 @@ const router = express.Router();
 var createError = require('http-errors');
 
 const Agente = require('../../models/Agente');
+const jwtAuth = require('../../lib/jwtAuth');
+
+// Protegemos todo el middleware con JWT Auth
+router.use(jwtAuth());
 
 /**
  * GET /
