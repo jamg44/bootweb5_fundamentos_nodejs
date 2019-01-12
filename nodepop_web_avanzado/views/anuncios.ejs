@@ -1,0 +1,67 @@
+<% include _header %>
+
+<div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
+  <div class="container">
+    <a href="/" class="navbar-brand">Nodeapi</a>
+
+      <ul class="nav navbar-nav ml-auto">
+<% getLocales().forEach( lang => { %>
+        <li class="nav-item">
+          <a class="nav-link" href="/anuncios?lang=<%= lang %>"><img src="/images/langs/<%= lang %>.png"></a>
+        </li>
+<% }) %>
+      </ul>
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1><%= __('Products list') %></h1>
+      <p class="lead"><%= __('Listing: len of tot', {len: anuncios.length, tot: total }) %></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-hover">
+        <thead><tr>
+          <th><%= __('Name') %></th>
+          <th><%= __('Sell') %></th>
+          <th style="text-align: right"><%= __('Price') %></th>
+          <th><%= __('Photo') %></th>
+          <th><%= __('Tags') %></th>
+          <th>#</th>
+        </tr></thead>
+        <tbody>
+<% anuncios.forEach(anuncio => { %>
+          <tr>
+            <td><%= anuncio.nombre %></td>
+            <td><%= anuncio.venta ? __('Yes') : __('No') %></td>
+            <td style="text-align: right"><%= anuncio.precio / 100 %>€</td>
+            <td><img src="<%= anuncio.foto %>"></td>
+            <td><%= anuncio.tags %></td>
+            <td><%= anuncio._id %></td>
+          </tr>
+<% }) %>
+        </tbody>
+      </table>
+
+      <p><%= __('Examples') %>:</p>
+
+      <ul>
+        <li><a href="?"><%= __('Todos (max. n)', {n: 1000}) %></a></li>
+        <li><a href="?start=2&limit=2"><%= __('Paginated') %></a></li>
+        <li><a href="?sort=precio"><%= __('Sort by price ascending') %></a></li>
+        <li><a href="?sort=-precio"><%= __('Sort by price descending') %></a></li>
+        <li><a href="?tag=mobile"><%= __('With mobile tag') %></a></li>
+      </ul>
+
+    </div>
+  </div>
+
+  <a href="/"><%= __('Back to home') %></a>
+
+</div>
+<% include _footer %>

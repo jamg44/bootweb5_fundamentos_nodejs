@@ -1,0 +1,22 @@
+{
+	"empty_file": "the file {{file}} is empty",
+	"not_found": "Not Found",
+	"not_valid": "Not valid",
+	"generic": "There was an error: {{err}}",
+	"Products list": "Products list",
+	"Listing: len of tot": "Listing: {{len}} of {{tot}}",
+	"Name": "Name",
+	"Sell": "Sell",
+	"Price": "Price",
+	"Photo": "Photo",
+	"Tags": "Tags",
+	"Yes": "Yes",
+	"No": "No",
+	"Examples": "Examples",
+	"Todos (max. n)": "All (max. {{n}})",
+	"Paginated": "Paginated",
+	"Sort by price ascending": "Sort by price ascending",
+	"Sort by price descending": "Sort by price descending",
+	"With mobile tag": "With mobile tag",
+	"Back to home": "Back to home"
+}

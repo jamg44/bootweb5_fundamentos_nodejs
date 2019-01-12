@@ -1,0 +1,22 @@
+{
+	"empty_file": "el fichero {{file}} está vacio",
+	"not_found": "No encontrado",
+	"not_valid": "No válido",
+	"generic": "Hubo un error: {{err}}",
+	"Products list": "Lista de anuncios",
+	"Listing: len of tot": "Listando: {{len}} de {{tot}}",
+	"Name": "Nombre",
+	"Sell": "Venta",
+	"Price": "Precio",
+	"Photo": "Foto",
+	"Tags": "Tags",
+	"Yes": "Si",
+	"No": "No",
+	"Examples": "Ejemplos",
+	"Todos (max. n)": "Todos (max. {{n}})",
+	"Paginated": "Paginados",
+	"Sort by price ascending": "Ordenados por precio ascendiente",
+	"Sort by price descending": "Ordenados por precio descendiente",
+	"With mobile tag": "Con tag mobile",
+	"Back to home": "Volver a la home"
+}
